@@ -3,10 +3,16 @@ class G:
 
     #Constructor con las listas de primeros, siguientes y conjunto prediccion
     def __init__(self):
+        #lista para agregar los elementos primeros
         self.first = []
+        #lista para obtener los elementos primeros de los no terminales
+        self.firstNot = []
+        #diccionario final con los primeros
         self.dictFirst = {}
+        #lista que permite el manejo de los primeros de los no terminales
         self.first2 = []
-        self.dictFirst2= {}
+        #diccionario que guarda la info de los primeros de los no terminales
+        self.dictFirst2 = {}
         self.following = []
         self.setPredict = []
         self.evalWord = ""
@@ -33,7 +39,11 @@ class G:
                     for noT in VN:
                         #se verifica si la variable a evaluar se encuentra en la lista de no terminales
                         if self.evalWord == noT:
-                            self.first.append(self.getFirstWithNoT(VT, VN, S, P, self.evalWord))
+                            self.firstNot.append(self.getFirstWithNoT(VT, VN, S, P, self.evalWord))
+                            for element in self.firstNot:
+                                for ele in element:
+                                    self.first.append(ele)
+                            self.firstNot.clear()
                             #se vacia la palabra a evaluar
                             self.evalWord = ""
                     #se hace un recorrido por la lista de terminales
@@ -46,7 +56,8 @@ class G:
                             self.evalWord = ""
                 #se crea un diccionario con Clave (inicio de produccion) y con Valor (La lista de primeros de ese inicio de produccion)
                 self.dictFirst[x] = self.first
-        print("Primeros:", self.dictFirst)
+        #print("Primeros:", self.dictFirst)
+        self.getFollowing(VT, VN, S, P)
 
     def getFirstWithNoT(self, VT, VN, S, P, word):
         self.evalWord2 = ""
@@ -71,8 +82,7 @@ class G:
                     return self.dictFirst2[x]
 
 
-    def getFollowing(self, VT, VN, S, P):
-        pass
+
 
 
 

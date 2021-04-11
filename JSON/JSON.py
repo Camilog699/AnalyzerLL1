@@ -24,10 +24,10 @@ class Lector:
     #Funcion encargada de leer el JSON
     def readGrammar(self):
         if os.name is "posix":
-            file = "JSON/grammar3.JSON"
+            file = "JSON/grammar1.JSON"
             self.slash = "/"
         else:
-            file = "JSON\\grammar3.JSON"
+            file = "JSON\\grammar1.JSON"
             self.slash = "\\"
         with open(file) as jfile:
             data = json.load(jfile)
