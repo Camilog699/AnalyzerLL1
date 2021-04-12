@@ -34,59 +34,59 @@
         "P": [
             {
                 "Inicio": [
-                    "s [ CN ] t IN S' "
+                    "s [ CN ] t IN S'"
                 ]
             },
             {
                 "S'": [
-                    "sn IN ",
-                    "sns [ CN ] IN ",
-                    "λ "
+                    "sn IN",
+                    "sns [ CN ] IN",
+                    "λ"
                 ]
             },
             {
                 "CN": [
-                    "FN CN' "
+                    "FN CN'"
                 ]
             },
             {
                 "CN'": [
-                    "ox FN CN' ",
-                    "λ "
+                    "ox FN CN'",
+                    "λ"
                 ]
             },
             {
                 "FN": [
-                    "TN FN' "
+                    "TN FN'"
                 ]
             },
             {
                 "FN'": [
-                    "yx TN FN' ",
-                    "λ "
+                    "yx TN FN'",
+                    "λ"
                 ]
             },
             {
                 "TN": [
-                    "tt ",
-                    "ff "
+                    "tt",
+                    "ff"
                 ]
             },
             {
                 "IN": [
-                    "ee MS - IN ",
-                    "λ "
+                    "ee MS - IN",
+                    "λ"
                 ]
             },
             {
                 "MS": [
-                    "{ CC } "
+                    "{ CC }"
                 ]
             },
             {
                 "CC": [
-                    "a..z CC ",
-                    "λ "
+                    "a..z CC",
+                    "λ"
                 ]
             }
         ]

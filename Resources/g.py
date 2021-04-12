@@ -14,6 +14,7 @@ class G:
         #diccionario que guarda la info de los primeros de los no terminales
         self.dictFirst2 = {}
         self.following = []
+        self.dictFollowing = {}
         self.setPredict = []
         self.evalWord = ""
         self.evalWord2 = ""
@@ -81,6 +82,34 @@ class G:
                     self.dictFirst2[x] = self.first2
                     return self.dictFirst2[x]
 
+    #Funcion que genera los siguientes
+
+    def getFollowing(self, VT, VN, S, P):
+        values = []
+        wordSearch = ""
+        word = ""
+        #Realizar correcion con mente fria y despierta, buenas noches
+        for productions in P:
+            for x, y in productions.items():
+                for value in y:
+                    values.append(value.split())
+        for x, y in self.dictFirst.items():
+            self.following = []
+            if x == S:
+                self.following.append("$")
+            elif x != S:
+                for i in range(len(values) - 1):
+                    for j in range(len(values[i])-1):
+                        if x == values[i][j]:
+                            word = values[i][j + 1]
+                            if word in VT:
+                                self.following.append(word)
+                            elif word in VN:
+                                for k, v in self.dictFirst.items():
+                                    if k == word:
+                                        self.following.append(v)
+            self.dictFollowing[x] = self.following
+        print(self.dictFollowing)
 
 
 
