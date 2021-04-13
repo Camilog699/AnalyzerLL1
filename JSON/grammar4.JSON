@@ -1,0 +1,38 @@
+{
+    "G": {
+        "VT": [
+            "λ",
+            "lit",
+            "ide",
+            "opad",
+            "ap",
+            "cp",
+            "asig",
+            "int",
+            "dpt"
+        ],
+        "VN": [
+            "E",
+            "E'"
+        ],
+        "S": "E",
+        "P": [
+            {
+                "E": [
+                    "lit E'",
+                    "ide E'",
+                    "opad E E'",
+                    "ap E cp E'"
+                ]
+            },
+            {
+                "E'": [
+                    "opad E E'",
+                    "asig E E'",
+                    "int E dpt E E'",
+                    "λ"
+                ]
+            }
+        ]
+    }
+}

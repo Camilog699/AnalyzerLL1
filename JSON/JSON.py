@@ -24,10 +24,10 @@ class Lector:
     #Funcion encargada de leer el JSON
     def readGrammar(self):
         if os.name is "posix":
-            file = "JSON/grammar2.JSON"
+            file = "JSON/grammar4.JSON"
             self.slash = "/"
         else:
-            file = "JSON\\grammar2.JSON"
+            file = "JSON\\grammar4.JSON"
             self.slash = "\\"
         with open(file) as jfile:
             data = json.load(jfile)
@@ -48,4 +48,4 @@ class Lector:
                         for productions in data["G"]["P"]:
                             self.P.append(productions)
         #Se mandan todos los elementos a la funcion que generará los primeros
-        self.g.getFirst(self.VT, self.VN, self.S, self.P)
+        self.g.initial(self.VT, self.VN, self.S, self.P)
