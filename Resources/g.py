@@ -78,8 +78,8 @@ class G:
                 self.dictFirst[x] = self.first
         #print("Primeros:", self.dictFirst)
         self.getFollowing(VT, VN, S, P)
-        self.getSetPrediction(VT, VN, S, P)
-        self.show()
+        print(self.getSetPrediction(VT, VN, S, P))
+        self.show(VT, VN, S, P)
 
     def getFirstWithNoT(self, VT, VN, S, P, word):
         self.evalWord2 = ""
@@ -146,42 +146,39 @@ class G:
 
 
     def getSetPrediction(self, VT, VN, S, P):
+        bigList = []
         word = ""
+        tempKey = ""
         for x, y in self.dictGrammar.items():
-            lista1 = []
-            lista2 = []
+            if x != tempKey:
+                tempKey = x
+                if self.checkRepeated(bigList):
+                    return "Esta gramática NO es compatible para un analizador LL1"
+                bigList = []
             for i in range(len(y)):
                 word = y[i][0]
-                if word in VT:
-                    self.dictFinal[x] = [word]
+                if word in VT and word != "λ":
+                    bigList.append([word])
                 if word in VN:
                     for k, v in self.dictFirst.items():
                         if k == word:
-                            lista1.append(v)
-                    self.dictFinal[x] = lista1
+                            bigList.append(v)
                 if word == "λ":
                     for m, n in self.dictFollowing.items():
                         if m == x:
-                            lista2.append(n)
-                        self.dictFinal[x] = lista2
-        #print("Cp:",self.dictFinal)
+                            bigList.append(n)
+            self.dictFinal[x] = bigList
+        return "Esta gramática es compatible para un analizador LL1"
 
 
-    def checkRepeated(self):
-        zeroCheck = True
-        for x, y in self.dictFinal.items():
-            for value in y:
-                var1 = sorted(set(value), key=value.index)
-                if len(value) == len(var1):
-                    zeroCheck = (self.checkEqual(value, var1) and zeroCheck) if True else False
-                    if not zeroCheck:
-                        break
-            if not zeroCheck:
-                break
-        if zeroCheck == False:
-            print("La gramatica NO es LL1")
-        else:
-            print("La gramatica es LL1")
+    def checkRepeated(self, lista):
+        if len(lista) < 2:
+            return False
+        for i in range(len(lista) - 1):
+            if not self.checkEqual(lista[i], lista[i + 1]):
+                return False
+        return True
+
 
     def checkEqual(self, list1, list2):
         for i in range(len(list1)):
@@ -189,7 +186,7 @@ class G:
                 return False
         return True
 
-    def show(self):
+    def show(self, VT, VN, S, P):
         print("Primeros:")
         for x, y in self.dictFirst.items():
             print(x, "-->", y)
@@ -202,6 +199,6 @@ class G:
         for x, y in self.dictFinal.items():
             print(x, "-->", y)
         print("_____________________________")
-        self.checkRepeated()
+        print(self.getSetPrediction(VT, VN, S, P))
 
 
